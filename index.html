@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Binswanger Americas industrial real estate across North and Latin America." />
+    <title>Binswanger Americas | Alternate Homepage Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./capital-markets.css" />
+    <style>
+      .cm-hero h1 .hero-primary { font-size: .95em; line-height: 1.1; }
+      .cm-hero h1 em { font-family: Manrope, Arial, sans-serif; font-size: .48em; font-style: normal; font-weight: 400; text-transform: none; letter-spacing: .04em; }
+      .cm-header .cm-brand img { display: block; width: 155px; height: auto; }
+      .cm-footer { grid-template-columns: minmax(160px, .8fr) minmax(210px, 1fr) minmax(270px, 1.2fr) auto; gap: 18px 42px; padding: 32px 8vw 18px; }
+      .cm-footer-brand { grid-column: 1; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+      .cm-footer-brand .cm-brand-logo { margin: 0; transform: none; }
+      .cm-footer-brand .cm-brand-logo img { width: 190px; filter: none; }
+      .cm-footer-contact { grid-column: auto; grid-row: auto; align-self: flex-start; justify-self: auto; margin: 20px 0 0; padding: 9px 16px; background: #274b68; color: #fff; transform: none; }
+      .cm-footer-main-site { margin: 0; color: #fff; opacity: .78; font-size: 10px; letter-spacing: .7px; text-transform: uppercase; }
+      .cm-footer-links { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+      .cm-footer-countries { grid-column: 3 / 5; grid-row: 1; margin: 0; line-height: 1.8; white-space: nowrap; }
+      .cm-footer-countries span { display: inline; color: inherit; opacity: 1; }
+      .cm-footer-meta { grid-column: 1 / -1; grid-row: 3; margin-top: 4px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.22); }
+      #why-binswanger .approach-copy { display: grid; grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); column-gap: 8vw; align-items: start; }
+      #why-binswanger .approach-copy::before { grid-column: 1; grid-row: 1; }
+      #why-binswanger .approach-copy h2 { grid-column: 1; grid-row: 2; }
+      #why-binswanger .approach-copy > p { grid-column: 1; }
+      #why-binswanger .cm-feature-list { grid-column: 2; grid-row: 1 / span 4; margin: 0; }
+      #why-binswanger .cm-feature-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #why-binswanger .cm-feature-list { grid-auto-rows: 170px; }
+      #why-binswanger .cm-feature-list li { min-width: 0; min-height: 170px; height: 170px; }
+      #why-binswanger .cm-feature-list li:last-child { grid-column: 1 / -1; padding-right: 0; }
+      #why-binswanger .cm-feature-list li:last-child span { max-width: calc((100% - 6vw) / 2 - 28px); }
+      @media (max-width: 760px) { .cm-header .cm-brand img { width: 130px; } .cm-footer { grid-template-columns: 1fr 1fr; gap: 24px; padding: 32px 24px 18px; } .cm-footer-brand { grid-column: 1; grid-row: 1 / span 2; } .cm-footer-links { grid-column: 1; grid-row: 3; } .cm-footer-countries { grid-column: 1 / -1; grid-row: 4; white-space: normal; } .cm-footer-meta { grid-column: 1 / -1; grid-row: 5; } }
+      @media (max-width: 760px) { #why-binswanger .approach-copy { display: block; } #why-binswanger .cm-feature-list { margin-top: 32px; } }
+
+      /* Reference-page treatment for Why Binswanger and industries. */
+      #why-binswanger.approach { display:block; min-height:0; background:#fff; }
+      #why-binswanger .approach-photo { display:none; }
+      #why-binswanger .approach-copy { display:grid; grid-template-columns:1fr 1fr; gap:24px 76px; padding:120px 8vw; background:#fff; color:#19221f; }
+      #why-binswanger .approach-copy::before { content:'Why Binswanger'; grid-column:1 / -1; color:#274b68; font:10px Inter,Arial,sans-serif; text-transform:uppercase; letter-spacing:1.1px; }
+      #why-binswanger .approach-copy h2 { grid-column:1; grid-row:2; margin:0; font:300 clamp(36px,3.3vw,56px)/.96 "Open Sans",Georgia,serif; }
+      #why-binswanger .approach-copy > p { grid-column:2; margin:0; font:16px/1.5 Inter,Arial,sans-serif; }
+      #why-binswanger .approach-copy > p:first-of-type { grid-row:2; }
+      #why-binswanger .cm-feature-list { grid-column:1 / -1; grid-row:auto; display:grid; grid-template-columns:repeat(2,1fr); gap:18px 76px; margin:0; padding:0; list-style:none; }
+      #why-binswanger .cm-feature-list li, #why-binswanger .cm-feature-list li:last-child { display:grid; gap:4px; grid-column:auto; min-height:0; height:auto; padding:0; border:0; }
+      #why-binswanger .cm-feature-list strong { font:300 20px/1.15 "Open Sans",Georgia,serif; }
+      #why-binswanger .cm-feature-list li span, #why-binswanger .cm-feature-list li:last-child span { max-width:none; font:16px/1.45 Inter,Arial,sans-serif; }
+      .reference-industries { position:relative; min-height:720px; background:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)),url('warehouse-for-peru.jpg') center/cover; }
+      .reference-industries::after { content:''; position:absolute; bottom:-70px; left:0; right:0; height:140px; background:var(--paper); }
+      .reference-industries-panel { position:absolute; z-index:1; left:7vw; right:7vw; bottom:10px; padding:56px 50px 44px; background:white; }
+      .reference-industries h2 { margin:0 0 42px; font:300 clamp(34px,3.1vw,54px)/.96 "Open Sans",Georgia,serif; letter-spacing:-.045em; }
+      .reference-industries-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:74px; border-bottom:1px solid #c8c9c5; }
+      .reference-industries-list a { display:flex; justify-content:space-between; align-items:center; min-height:72px; border-top:1px solid #c8c9c5; color:#263b41; font:18px/1.2 Inter,Arial,sans-serif; }
+      .reference-industries-list b { color:#274b68; font:25px/1 Inter,Arial,sans-serif; }
+      .reference-industries + section { margin-top:70px; }
+      @media(max-width:760px) { #why-binswanger .approach-copy { display:block; padding:80px 24px; } #why-binswanger .approach-copy::before { display:block; margin-bottom:24px; } #why-binswanger .approach-copy > p { margin-top:20px; } #why-binswanger .cm-feature-list { grid-template-columns:1fr; margin-top:26px; } .reference-industries { min-height:760px; } .reference-industries-panel { left:12px; right:12px; padding:36px 24px 26px; } .reference-industries h2 { margin-bottom:28px; } .reference-industries-list { grid-template-columns:1fr; } .reference-industries-list a { min-height:57px; font-size:16px; } }
+      #why-binswanger .why-summary { grid-column:2; grid-row:2; font:16px/1.45 Inter,Arial,sans-serif; }
+      #why-binswanger .why-summary p { margin:0 0 24px; }
+      #why-binswanger .why-summary a { display:inline-block; margin-top:12px; padding:12px 18px; background:#274b68; color:#fff; font:10px Inter,Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; }
+      #why-binswanger .why-summary a span { font-size:18px; margin-left:12px; }
+      @media(max-width:760px) { #why-binswanger .why-summary { margin-top:20px; } }
+
+      #about h2 { font-size:clamp(25px, 2.35vw, 38px); }
+      #about p:not(.side-label) { font-size:16px; line-height:1.5; }
+      #about .line-link { padding:14px 20px; border:0; background:#061d2c; color:#fff; }
+      #history .story-grid .kicker { margin: auto 0 0; padding-top: 20px; }
+      main .kicker, main .side-label, #why-binswanger .approach-copy::before { font-family: Manrope, Arial, sans-serif; font-size:14px; font-weight:700; text-transform:none; letter-spacing:normal; }
+    .cm-header { height:96px; } @media(max-width:760px) { .cm-header { height:78px; } }
+.hero-count { display:none !important; } .hero-next { display:block; border:0; background:transparent; color:inherit; font-size:24px; cursor:pointer; }
+.reference-industries { display:flex; align-items:center; justify-content:center; padding:80px 7vw; } .reference-industries::after { display:none; } .reference-industries-panel { position:relative; left:auto; right:auto; bottom:auto; width:100%; } .reference-industries + section { margin-top:0; } @media(max-width:760px) { .reference-industries { padding:60px 12px; } .reference-industries-panel { left:auto; right:auto; } }
+main .kicker, main .side-label, #why-binswanger .approach-copy::before { font:700 14px/1.3 Manrope,Arial,sans-serif; letter-spacing:normal; text-transform:none; }
+.hero-next, .arrow-link span, .line-link span, .cm-contact span, .why-summary a span { font-family:Manrope,Arial,sans-serif; font-weight:400; }
+#about h2, .industrial-map-copy h2, #why-binswanger .approach-copy h2, .expertise h2, .reference-industries h2, .insights h2 { font-family:"Open Sans", Georgia, serif; font-size:clamp(25px, 2.35vw, 38px); font-weight:300; line-height:1.05; letter-spacing:-.025em; }
+.footer-inquiry { padding:0 8vw 70px; background:#061d2c; color:#fff; border-top:0; } .footer-inquiry-top { display:grid; grid-template-columns:1fr 1fr; gap:40px; padding:30px 0; border-bottom:1px solid #dc143c; font:700 14px/1.3 Manrope,Arial,sans-serif; } .footer-inquiry-body { display:grid; grid-template-columns:1fr 1fr; gap:10vw; padding-top:65px; } .footer-inquiry h2 { margin:0 0 22px; font:300 clamp(25px,2.35vw,38px)/1.05 "Open Sans",Georgia,serif; } .footer-inquiry p { max-width:520px; margin:0; font:16px/1.65 Manrope,Arial,sans-serif; color:#e1e7e9; } .footer-inquiry-action { padding-top:4px; } .footer-inquiry-action a { background:#274b68; display:inline-flex; align-items:center; justify-content:space-between; min-width:190px; margin-top:24px; padding:14px 20px; border:0; color:#fff; font:700 10px Manrope,Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; } .footer-inquiry-action a span { font-size:24px; line-height:1; margin-left:30px; } .cm-footer { border-top:1px solid rgba(255,255,255,.2); } @media(max-width:760px) { .footer-inquiry { padding:0 24px 55px; } .footer-inquiry-top { gap:20px; font-size:12px; } .footer-inquiry-body { grid-template-columns:1fr; gap:32px; padding-top:45px; } }
+.footer-inquiry-body { padding-top:65px; } .cm-footer { border-top:0; }
+.footer-inquiry-action a { background:transparent; border:1px solid #fff; }
+.footer-inquiry-logo { display:block; width:190px; height:auto; margin:0 0 32px; }
+.cm-footer .cm-brand-logo, .cm-footer > div:first-child > a:has(img) { display:none; }
+@media(min-width:761px) { .footer-inquiry-body { row-gap:0; } .footer-inquiry-body > div:first-child { display:contents; } .footer-inquiry-logo, .footer-inquiry h2, .footer-inquiry-body > div:first-child > p { grid-column:1; } .footer-inquiry-action { grid-column:2; grid-row:3; align-self:start; padding-top:0; } }
+@media(min-width:761px) { .footer-inquiry-action { transform:translateY(-40px); } }
+#markets.industrial-map { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6vw; align-items:center; min-height:0; padding:90px 8vw; background:#fff; } #markets .industrial-map-canvas { grid-column:1; grid-row:1; width:100%; min-height:600px; margin:0; background:#eef0ef; } #markets .industrial-map-copy { position:static; grid-column:2; grid-row:1; width:auto; padding:0; } @media(max-width:760px) { #markets.industrial-map { grid-template-columns:1fr; gap:32px; padding:65px 24px; } #markets .industrial-map-canvas { grid-column:1; grid-row:1; min-height:420px; } #markets .industrial-map-copy { grid-column:1; grid-row:2; } }
+#markets .industrial-map-copy { pointer-events:auto; } .market-buttons { display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; } .market-buttons a, .market-buttons button { display:inline-flex; align-items:center; gap:12px; padding:11px 15px; border:1px solid #274b68; background:transparent; color:#061d2c; font:600 13px Manrope,Arial,sans-serif; } .market-buttons a:hover { background:#061d2c; color:#fff; } .market-buttons button:disabled { border-color:#c5cece; color:#687476; cursor:not-allowed; } .market-buttons a span { font-size:19px; line-height:1; }
+@media(min-width:761px) { #markets .industrial-map-copy { align-self:start; margin-top:45px; } }
+main .kicker, main .side-label, #why-binswanger .approach-copy::before, #markets .industrial-map-copy .kicker { color:#061d2c; }
+#about, #markets, #expertise, #why-binswanger, #history { position:relative; } #about > .side-label, #markets .industrial-map-copy > .kicker, #expertise .expertise-heading > .kicker, #history > .side-label, #why-binswanger .approach-copy::before { position:absolute; top:36px; left:8vw; z-index:2; margin:0; color:#061d2c; } #about > .side-label::before, #markets .industrial-map-copy > .kicker::before, #expertise .expertise-heading > .kicker::before, #history > .side-label::before { content:""; display:inline-block; width:18px; height:4px; margin:0 10px 3px 0; background:#dc143c; } #why-binswanger .approach-copy::before { padding-left:28px; background:linear-gradient(#dc143c,#dc143c) left center/18px 4px no-repeat; } @media(max-width:760px) { #about > .side-label, #markets .industrial-map-copy > .kicker, #expertise .expertise-heading > .kicker, #history > .side-label, #why-binswanger .approach-copy::before { left:24px; top:25px; } #markets.industrial-map { padding-top:65px; } }
+.stats-strip .stats-grid { position:relative; top:20px; align-items:center; }
+#about.intro-block { border-bottom:0; } #markets.industrial-map { border-top:0; }
+#expertise .expertise-heading, #expertise .expertise-heading h2 { text-align:left; }
+#expertise .expertise-list a { background:transparent; }
+#expertise .expertise-list h3 { font-size:clamp(17px, 1.35vw, 21px); font-weight:500; }
+.market-buttons { display:flex; flex-direction:column; align-items:stretch; gap:0; margin-top:24px; } .market-buttons a, .market-buttons button, .market-buttons button:disabled { justify-content:flex-start; width:100%; padding:8px 0; border:0; background:transparent; color:#061d2c; text-align:left; font:600 14px Manrope,Arial,sans-serif; } .market-buttons a::before, .market-buttons button::before { content:""; flex:none; width:18px; height:3px; background:#061d2c; margin-right:12px; } .market-buttons a:hover { color:#274b68; background:transparent; } .market-buttons button:disabled { cursor:default; }
+.market-buttons a::before, .market-buttons button::before { display:none; } .market-buttons a, .market-buttons button { justify-content:space-between; } .market-buttons a::after, .market-buttons button::after { content:"›"; color:#061d2c; font:400 22px/1 Manrope,Arial,sans-serif; }
+.market-buttons { gap:6px; } .market-buttons a, .market-buttons button, .market-buttons button:disabled { background:#eef0ef; padding:10px 14px; } .market-buttons a:hover { background:#dce2e1; }
+.market-buttons a, .market-buttons button, .market-buttons button:disabled { justify-content:space-between; } .market-buttons a::after, .market-buttons button::after { margin-left:auto; }
+.cm-footer { background:#fff; color:#061d2c; } .cm-footer .cm-footer-main-site { color:#061d2c; } .cm-footer .cm-footer-meta { border-color:#d9dedd; }
+#why-binswanger .approach-copy::before { content:none; }
+.closing-gallery { display:block; padding:0; }
+.closing-gallery figure:first-child:last-child { padding:0; transform:none; }
+.closing-gallery figure:first-child:last-child img { width:100%; height:clamp(280px, 40vw, 600px); aspect-ratio:auto; object-fit:cover; }
+.reference-industries-panel { border-top:10px solid #061d2c; }
+#expertise .expertise-list a { grid-template-columns:48px 1fr; gap:16px; }
+.capability-icon { width:48px; height:48px; padding:11px; color:#274b68; background:transparent; border:1px solid rgba(39,75,104,.2); border-radius:50%; box-shadow:0 3px 8px rgba(6,29,44,.10); }
+#why-binswanger .why-summary a { display:inline-flex; align-items:center; gap:18px; padding:14px 20px; background:#061d2c; color:#fff; border:0; }
+#about .line-link { display:inline-flex; align-items:center; gap:18px; padding:14px 20px; background:#061d2c; color:#fff; border:0; font:10px Inter,Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; }
+#why-binswanger .approach-copy { padding-top:30px; padding-bottom:90px; align-items:start; }
+@media(max-width:760px) { #why-binswanger .approach-copy { padding-top:20px; padding-bottom:60px; } }
+.hero-next { width:44px; height:44px; display:grid; place-items:center; padding:0; border:1px solid rgba(255,255,255,.2); border-radius:50%; line-height:1; }
+.cm-footer .cm-footer-brand .cm-brand-logo { display:block; }
+.cm-footer .cm-footer-brand .cm-brand-logo img { display:block; width:190px; height:auto; }
+@media(min-width:761px) { .footer-inquiry-action { transform:translateY(-80px); } }
+.footer-inquiry h2, .footer-inquiry-body > div:first-child > p { position:relative; top:30px; }
+.hero-copy-slide { color:rgba(255,255,255,.78); }
+.closing-gallery { background:#061d2c; }
+.closing-gallery img { filter:brightness(.65); }
+</style>
+  </head>
+  <body>
+    <header class="cm-header"><a class="cm-brand cm-brand-logo" href="index.html"><img src="binswanger-intelligence.png" alt="Binswanger Americas" /></a><nav><a href="#about">About</a><a href="#why-binswanger">Why Binswanger</a><a href="#expertise">Industries &amp; Services</a><a href="index.html#markets">Explore Markets</a></nav><a class="cm-contact" href="index.html#contact">Contact us <span>›</span></a><button class="cm-menu" aria-label="Open navigation" aria-expanded="false">Menu <i></i><i></i></button></header>
+    <main id="top">
+      <section class="cm-hero"><div class="cm-hero-image"></div><div class="cm-hero-panel" data-hero-carousel><h1><span class="hero-primary">Industrial and Manufacturing Real Estate Across the Americas</span><br><em>One Regional Platform. <span style="white-space: nowrap">Local Market Experts.</span></em></h1><div class="hero-copy-carousel" aria-live="polite"><p class="hero-copy-slide is-active">For nearly a century, Binswanger has helped industrial companies navigate change, seize opportunity, and make confident real estate decisions in an increasingly interconnected world.</p><p class="hero-copy-slide">Today, as supply chains evolve and businesses look beyond their home markets for growth, understanding the nuances of Latin America real estate has never been more important.</p><p class="hero-copy-slide">Binswanger Americas brings together decades of industrial specialization and cross-border experience to help clients expand, relocate, and optimize operations throughout Latin America and beyond. From manufacturing facilities and distribution centers to complex site selection initiatives, we understand the operational considerations that drive industrial real estate decisions.</p><p class="hero-copy-slide">Our clients benefit from strategic guidance rooted in nearly 100 years of experience helping companies establish a presence in new markets, overcome local complexities, and execute with confidence. Wherever opportunity leads, we help industrial occupiers move forward with clarity, consistency, and an unwavering focus on business outcomes.</p></div><button class="arrow-link hero-next" type="button" aria-label="Next section">›</button><div class="hero-index" aria-label="Hero story sections"><b class="hero-count" aria-hidden="true">01</b><button class="is-active" type="button" aria-label="Show section 1" aria-pressed="true"></button><button type="button" aria-label="Show section 2" aria-pressed="false"></button><button type="button" aria-label="Show section 3" aria-pressed="false"></button><button type="button" aria-label="Show section 4" aria-pressed="false"></button></div></div></section>
+      <section class="intro-block" id="about"><div><h2>Local Experts Across Latin America</h2><p>Every market is different. Labor availability, infrastructure, incentives, regulations, transportation networks, and industrial inventory vary significantly across the region.</p><p>That is why Binswanger Americas partners with experienced local firms that understand their markets better than anyone.</p><a class="line-link" href="index.html#markets">Explore featured markets <span>›</span></a></div></section>
+      <section class="industrial-map" id="markets" aria-labelledby="industrial-map-title"><div class="industrial-map-copy"><h2 id="industrial-map-title">Explore Markets</h2><p>Select a country to explore background, services, case studies, top clients, and leadership contacts for that market.</p><div class="market-buttons" aria-label="Markets"><button type="button" disabled>Argentina</button><button type="button" disabled>Brazil</button><a href="market-chile.html">Chile</a><button type="button" disabled>Colombia</button><button type="button" disabled>Mexico</button><button type="button" disabled>Peru</button><button type="button" disabled>United States</button></div></div><div id="map" class="industrial-map-canvas" role="application" aria-label="Interactive Latin America market map"></div></section>
+      <section class="expertise" id="expertise"><div class="expertise-heading"><h2>Capabilities for industrial occupiers and investors.</h2></div><div class="expertise-list"><a href="index.html#expertise"><svg class="capability-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg><div><h3>Industrial brokerage</h3><p>Complex acquisitions and dispositions executed with local market precision.</p></div><b>›</b></a><a href="index.html#expertise"><svg class="capability-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg><div><h3>Site selection</h3><p>Location strategy shaped by workforce, infrastructure, operating costs, and long-term business goals.</p></div><b>›</b></a><a href="index.html#expertise"><svg class="capability-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 12h6M9 16h6"/></svg><div><h3>Build-to-suit</h3><p>Coordination across developers, municipalities, contractors, and occupiers.</p></div><b>›</b></a><a href="index.html#expertise"><svg class="capability-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="1"/><path d="M3 10h18M8 5V3m8 2V3M8 15h3m3 0h2"/></svg><div><h3>Portfolio strategy</h3><p>Regional optimization for multinational industrial real estate footprints.</p></div><b>›</b></a><a href="index.html#expertise"><svg class="capability-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 18V10m5 8V6m5 12v-5m5 5V3"/></svg><div><h3>Capital markets</h3><p>Institutional connections for industrial opportunities across the region.</p></div><b>›</b></a><a href="index.html#expertise"><svg class="capability-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l6 3V8l6 3V4h4v17H3Z"/><path d="M7 17h1m4 0h1m4 0h1"/></svg><div><h3>Industries served</h3><p>Manufacturing, logistics, life sciences, food and beverage, cold storage, automotive, semiconductors, data centers, energy, and aerospace.</p></div><b>›</b></a></div></section>
+      <section class="reference-industries" id="industries"><div class="reference-industries-panel"><h2>Industries we serve</h2><div class="reference-industries-list"><a href="index.html#expertise">Manufacturing</a><a href="index.html#expertise">Logistics</a><a href="index.html#expertise">Life sciences</a><a href="index.html#expertise">Food and beverage</a><a href="index.html#expertise">Cold storage</a><a href="index.html#expertise">Automotive</a><a href="index.html#expertise">Semiconductors</a><a href="index.html#expertise">Data centers</a><a href="index.html#expertise">Energy</a><a href="index.html#expertise">Aerospace</a></div></div></section>
+      <section class="stats-strip stats-strip-five"><div class="stats-grid"><div><strong>90+</strong><span>Years of industrial expertise</span></div><div><strong>130+</strong><span>Fortune 1000 client relationships</span></div><div><strong>13+</strong><span>Latin American markets</span></div><div><strong>20+</strong><span>Industry experts</span></div><div><strong>8</strong><span>Core regional affiliates</span></div></div></section>
+      <section class="approach" id="why-binswanger"><div class="approach-copy"><h2>Why Binswanger</h2><div class="why-summary"><p>Instead of choosing between a global brokerage with limited local expertise or independent firms without regional coordination, Binswanger Americas delivers both.</p><p>Whether your project spans one country or ten, our clients receive coordinated execution from experienced professionals who understand their local markets.</p><a href="index.html#contact">Learn why Binswanger <span>›</span></a></div></div></section>
+
+      
+
+
+      <section class="closing-gallery" aria-label="Featured properties"><figure><img src="buildingsss.jpg" alt="Modern glass office building viewed from below" /></figure></section>
+    </main>
+    <section id="contact" class="footer-inquiry" aria-label="Contact Binswanger"><div class="footer-inquiry-body"><div><h2>Let’s talk industrial real estate</h2><p>Connect with our team about your industrial facilities, site selection, and real estate strategy across the Americas.</p></div><div class="footer-inquiry-action"><p>Explore how we can help with your next project.</p><a href="https://www.binswanger.com/">Get in touch <span>›</span></a></div></div></section>
+<footer class="cm-footer"><div class="cm-footer-brand"><a class="cm-brand cm-brand-logo" href="index.html"><img src="binswanger-intelligence.png" alt="Binswanger Americas" /></a><a class="cm-footer-main-site" href="https://www.binswanger.com/" target="_blank" rel="noopener noreferrer">Binswanger.com</a></div><div class="cm-footer-links"><a href="#about">About</a><a href="#why-binswanger">Why Binswanger</a><a href="#expertise">Industries &amp; Services</a><a href="index.html#markets">Markets</a></div><p class="cm-footer-countries"><span>Markets</span><br />Argentina · Brazil · Chile · Colombia · Mexico · Peru · United States</p><div class="cm-footer-meta"><span>© 2026 Binswanger Americas</span></div></footer>
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
